@@ -82,11 +82,12 @@ def main():
 
 def get_aux_data(f):
     kdata = Kdata(f)
-    kdata.kversion =        f['aux']['kallisto_version'][0]
-    kdata.idxversion =      f['aux']['index_version'][0]
-    kdata.num_bootstrap =  f['aux']['num_bootstrap'][0]
-    kdata.start_time =      f['aux']['start_time'][0]
-    kdata.call =            f['aux']['call'][0]
+    kdata.kversion =    f['aux']['kallisto_version'][0]
+    kdata.idxversion =  f['aux']['index_version'][0]
+    kdata.num_targets = len(f['aux']['ids'])
+    kdata.num_bootstrap=f['aux']['num_bootstrap'][0]
+    kdata.start_time =  f['aux']['start_time'][0]
+    kdata.call =        f['aux']['call'][0]
     return(kdata)
 
 def describe(f):
@@ -101,6 +102,7 @@ def describe(f):
     print("")
     print(bcolors.OKGREEN + "Kallisto version     : " + bcolors.ENDC + str(kdata.kversion)      )
     print(bcolors.OKGREEN + "Index version        : " + bcolors.ENDC + str(kdata.idxversion)    )
+    print(bcolors.OKGREEN + "Number of targets    : " + bcolors.ENDC + str(kdata.num_targets)   )
     print(bcolors.OKGREEN + "Number of bootstraps : " + bcolors.ENDC + str(kdata.num_bootstrap) )
     print(bcolors.OKGREEN + "Kallisto started     : " + bcolors.ENDC + str(kdata.start_time)    )
     print(bcolors.OKGREEN + "Command              : " + bcolors.ENDC + str(kdata.call)          )
