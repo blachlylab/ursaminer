@@ -1,0 +1,2 @@
+# ursaminer
+Ursa miner
