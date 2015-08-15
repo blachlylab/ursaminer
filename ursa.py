@@ -19,6 +19,7 @@
 
 from __future__ import print_function
 
+import os
 import sys
 import platform
 import argparse
@@ -71,7 +72,10 @@ def main():
     parser.add_argument('mode', choices=['describe', 'extract'])
     parser.add_argument('file')
     args = parser.parse_args()
-
+    
+    if not os.path.exists(os.path.abspath(os.path.expanduser(args.file))):
+        sys.stderr.write(bcolors.FAIL + "File not found: " + bcolors.ENDC + args.file + "\n")
+        sys.exit(1)
     f = h5py.File(args.file, 'r')
     
     if args.mode == 'describe': describe(f)
